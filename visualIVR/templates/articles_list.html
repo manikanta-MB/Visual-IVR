@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Article List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{% get_static_prefix %}javascript/articles_list.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="panel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Article List</div>
+            <div class="panel-body">
+                <div id="article-list">
+                    {% for article in articles %}
+                    <div><a id="item{{forloop.counter}}" href="{{article.content_path}}">{{article.name}}</a></div>
+                    {% endfor %}
+                </div>
+                {% if next_article_exist %}<div id="nta" value="4"><a onclick="nextTopArticles(event,'{{category_name}}')" href="#">Next Top Articles</a></div>{% endif %}
+                <div><a onclick="goBack(event)" href="#">Previous Menu</a></div>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
