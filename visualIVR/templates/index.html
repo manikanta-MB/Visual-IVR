@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load pwa %}
+{% load static %}
 <head>
+    {% progressive_web_app_meta %}
     <title>Home Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% get_static_prefix %}styles/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{% get_static_prefix %}javascript/index.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <div class="panel-group">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Main Menu</div>
-            <div class="panel-body">
-                <div><a href="#">Read a New Article</a></div>
-                <div><a href="/articles/all">List New Articles</a></div>
-                <div><a href="/categories">List Article Categories</a></div>
-                <div><a href="#">Request a Category</a></div>
-            </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Main Menu</div>
+          <div class="panel-body">
+            <!-- <button id="item1" onclick="readNews(event,'{{default_article_path}}')">Read a New Article</button> -->
+            <button id="item1" onclick="readNews()">Read a New Article</button>
+            <button id="item2" onclick="window.location='/articles/all'">List New Articles</button>
+            <button id="item3" onclick="window.location='/categories'">List Article Categories</button>
+            <button id="item4" >Request a Category</button>
           </div>
         </div>
+    </div>
+    <div id="news">
+      
     </div>
 </body>
 </html>

@@ -25,7 +25,7 @@ SECRET_KEY = 'ga3rln)@*shhfci+!lczb=eqw&tzyv5=&xs^)&1%84f-u4gihq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['e9ea-160-238-73-176.ngrok.io','localhost']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'visualIVR',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,43 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR,'visualIVR/static/javascript', 'serviceworker.js')
+
+PWA_APP_NAME = 'visual IVR'
+PWA_APP_SHORT_NAME = 'VSIVR'
+PWA_APP_DESCRIPTION = "A sample Visual IVR"
+PWA_APP_THEME_COLOR = 'green'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = 'home/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+	{
+		'src': '/static/images/icon-192x192.png',
+		'type': 'image/png',
+        'sizes': '192x192',
+	},
+    {
+		'src': '/static/images/icon-512x512.png',
+		'type': 'image/png',
+        'sizes': '512x512',
+	}
+]
+# PWA_APP_ICONS_APPLE = [
+# 	{
+# 		'src': 'static/images/icon-160x160.png',
+# 		'sizes': '160x160'
+# 	}
+# ]
+PWA_APP_SPLASH_SCREEN = [
+	{
+		'src': '/static/images/icon-160x160.png',
+		'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
+        "purpose": "maskable"
+	}
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'

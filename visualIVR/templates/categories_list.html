@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+{% load pwa %}
 {% load static %}
 <html lang="en">
 <head>
+    {% progressive_web_app_meta %}
     <title>Category List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% get_static_prefix %}styles/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="{% get_static_prefix %}javascript/categories_list.js"></script>
@@ -18,11 +21,11 @@
             <div class="panel-body">
                 <div id="category-list">
                     {% for category in categories %}
-                    <div><a id="item{{forloop.counter}}" href="/articles/{{category.name}}/">{{category.name}}</a></div>
+                    <button id="item{{forloop.counter}}" onclick="window.location='/articles/{{category.name}}/'">{{category.name}}</button>
                     {% endfor %}
                 </div>
-                {% if next_category_exist %}<div id="ntc" value="4"><a onclick="nextTopCategories(event)" href="#">Next Top Categories</a></div>{% endif %}
-                <div><a onclick="goBack(event)" href="#">Previous Menu</a></div>
+                {% if next_category_exist %}<button id="ntc" value="4" onclick="nextTopCategories(event)" >Next Top Categories</button>{% endif %}
+                <button id="prev-menu" onclick="goBack(event)">Previous Menu</button>
             </div>
           </div>
         </div>

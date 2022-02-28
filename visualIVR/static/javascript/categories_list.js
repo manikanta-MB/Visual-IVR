@@ -36,13 +36,11 @@ function nextTopCategories(event){
         let index = 0
         for(let category of res["data"]){
             index += 1
-            let divEle = document.createElement("div")
-            let anchorEle = document.createElement("a")
-            anchorEle.setAttribute("id","item"+index)
-            anchorEle.setAttribute("href","/articles/"+category["name"])
-            anchorEle.innerHTML = category["name"]
-            divEle.append(anchorEle)
-            categoryListEle.append(divEle)
+            let button = document.createElement("button")
+            button.setAttribute("id","item"+index)
+            button.setAttribute("onclick","window.location='/articles/"+category["name"]+"'")
+            button.innerHTML = category["name"]
+            categoryListEle.append(button)
         }
         if(res["nextIndex"]){
             $("#ntc").attr("value",res["nextIndex"])
@@ -58,3 +56,30 @@ function goBack(event){
     event.preventDefault();
     history.back();
 }
+
+function handleKeyEvent(event){
+    switch(event.key){
+        case "1":
+            $("#item1").click()
+            break;
+        case "2":
+            $("#item2").click()
+            break;
+        case "3":
+            $("#item3").click()
+            break;
+        case "4":
+            $("#item4").click()
+            break;
+        case "5":
+            $("#ntc").click()
+            break;
+        case "9":
+            $("#prev-menu").click()
+            break;
+        default:
+            break;
+    }
+}
+
+window.addEventListener('keydown',handleKeyEvent)
