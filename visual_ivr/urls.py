@@ -21,10 +21,11 @@ from visualIVR import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',views.home_page),
-    re_path('^articles/(?P<category_name>[a-zA-Z0-9_\- ]+)/$',views.list_articles),
-    path('categories/',views.list_categories),
-    path('next_top_articles/',views.next_top_articles),
-    path('next_top_categories/',views.next_top_categories),
-    path('generate_tts/',views.generate_tts),
+    re_path('^articles/(?P<category_name>[a-zA-Z0-9_\- ]+)/(?P<starting_index>\d+)/$',views.list_articles),
+    re_path('^categories/(?P<starting_index>\d+)/$',views.list_categories),
     path('',include('pwa.urls')),
 ]
+
+# path('next_top_articles/',views.next_top_articles),
+# path('next_top_categories/',views.next_top_categories),
+# path('generate_tts/',views.generate_tts),

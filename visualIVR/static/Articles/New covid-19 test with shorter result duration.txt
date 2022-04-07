@@ -1,9 +1,0 @@
-Chinese scientists say they have developed a new coronavirus test that is accurate as a PCR lab test but gives results within four minutes.
-
-In a peer-reviewed article published on Monday in the journal Nature Biomedical Engineering , the team said their sensor — which uses microelectronics to analyse genetic material from swabs — can reduce the need for time-consuming Polymerase chain reaction (PCR) tests conducted in COVID labs.
-
-The researchers said their method offers speed, ease of operation, high sensitivity and portability.
-
-Their trial involved taking samples from 33 people in Shanghai who were infected with the coronavirus, with PCR tests conducted in parallel.
-
-The results from their method were a “perfect” match with the PCR tests.

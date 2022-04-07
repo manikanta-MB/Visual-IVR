@@ -1,0 +1,335 @@
+// function readNews(event,fileName){
+//     event.preventDefault();
+//     let csrftoken = getCookie('csrftoken');
+//     let data = {
+//         "filename":fileName
+//     }
+//     const options = {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             "X-CSRFToken": csrftoken
+//         },
+//         mode: 'same-origin',
+//         body: JSON.stringify(data)
+//     }
+//     fetch("/generate_tts/",options)
+//     .then(res => res.json())
+//     .then(res => {
+//         if(res["success"]){
+//             let containerEle = document.querySelector('.container')
+//             let audioEle = document.createElement("audio")
+//             audioEle.setAttribute("controls",true)
+//             audioEle.setAttribute("autoplay",true)
+//             let sourceEle = document.createElement("source")
+//             sourceEle.setAttribute("src","/static/Audio News/"+fileName.slice(0,-4)+".mp3")
+//             sourceEle.setAttribute("type","audio/mpeg")
+//             audioEle.append(sourceEle)
+//             containerEle.append(audioEle)
+//         }
+//     })
+//     .catch(console.log)
+// }
+
+// ele.addEventListener("focusout",function(){
+//     $("#news").remove();
+// })
+
+//   function readNews(currentEle, event) {
+//     let ele = document.createElement("div");
+//     ele.setAttribute("tabindex", "-1");
+//     ele.setAttribute("id", "news");
+//     ele.setAttribute("class", "sr-only");
+//     ele.innerHTML = "some random News text to read.";
+//     $(currentEle).after(ele);
+//     ele.focus();
+//   }
+
+// $("button[id=item1]").focusin(function () {
+//   $("#news").remove();
+// });
+
+// function getCookie(name) {
+//   var cookieValue = null;
+//   if (document.cookie && document.cookie !== "") {
+//     var cookies = document.cookie.split(";");
+//     for (var i = 0; i < cookies.length; i++) {
+//       var cookie = cookies[i].trim();
+//       if (cookie.substring(0, name.length + 1) === name + "=") {
+//         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//         break;
+//       }
+//     }
+//   }
+//   return cookieValue;
+// }
+
+// window.addEventListener('load', e => {
+//     let panel = document.querySelector(".panel")
+//     let windowHeight = $(window).height()
+//     alert(windowHeight);
+//     panel.setAttribute("style",`height:${windowHeight}px`)
+// });
+
+// case "1":
+//     $("#item1").click();
+//     break;
+// case "2":
+//     $("#item2").click();
+//     break;
+// case "3":
+//     $("#item3").click();
+//     break;
+// case "4":
+//     $("#item4").click();
+//     break;
+// case "7":
+//     let audioEle = document.querySelector("audio");
+//     if (audioEle.paused) {
+//     audioEle.play();
+//     } else {
+//     audioEle.pause();
+//     }
+//     break;
+
+// case "ArrowRight":
+//     nav(1, "right");
+//     break;
+// case "ArrowLeft":
+//     nav(-1, "left");
+//     break;
+
+// function nav(direction) {
+//   const currentIndex = Number(document.activeElement.tabIndex);
+//   const numberOfButtons = document.querySelectorAll("button").length;
+//   console.log("no of buttons" + numberOfButtons);
+//   if (direction == "down") {
+//     const ele = document.querySelector(`*[tabindex='${currentIndex + 1}']`);
+//     if (ele) {
+//       ele.focus();
+//     } else {
+//       document.querySelector("*[tabindex='1']").focus();
+//     }
+//   } else if (direction == "up") {
+//     const ele = document.querySelector(`*[tabindex='${currentIndex - 1}']`);
+//     if (ele) {
+//       ele.focus();
+//     } else {
+//       document.querySelector(`*[tabindex='${numberOfButtons}']`).focus();
+//     }
+//   }
+// }
+
+// function getCookie(name) {
+//   var cookieValue = null;
+//   if (document.cookie && document.cookie !== "") {
+//     var cookies = document.cookie.split(";");
+//     for (var i = 0; i < cookies.length; i++) {
+//       var cookie = cookies[i].trim();
+//       if (cookie.substring(0, name.length + 1) === name + "=") {
+//         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//         break;
+//       }
+//     }
+//   }
+//   return cookieValue;
+// }
+
+// function nextTopArticles(event, categoryName) {
+//   event.preventDefault();
+//   let csrftoken = getCookie("csrftoken");
+//   let data = {
+//     categoryName: categoryName,
+//     nextIndex: $("#nta").attr("value"),
+//   };
+//   const options = {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "X-CSRFToken": csrftoken,
+//     },
+//     mode: "same-origin",
+//     body: JSON.stringify(data),
+//   };
+//   fetch("/next_top_articles/", options)
+//     .then((res) => res.json())
+//     .then((res) => {
+//       alert("entered.");
+//       let articleListEle = document.getElementById("article-list");
+//       articleListEle.innerHTML = "";
+//       let index = 0;
+//       for (let article of res["data"]) {
+//         index += 1;
+//         let button = document.createElement("button");
+//         button.setAttribute("id", "item" + index);
+//         button.setAttribute(
+//           "onclick",
+//           "readNews(event,'" + article["contentPath"] + "')"
+//         );
+//         button.innerHTML = article["name"];
+//         articleListEle.append(button);
+//       }
+//       if (res["nextIndex"]) {
+//         $("#nta").attr("value", res["nextIndex"]);
+//       } else {
+//         $("#nta").remove();
+//       }
+//     })
+//     .catch(console.log);
+// }
+
+// function goBack(event) {
+//   event.preventDefault();
+//   history.back();
+// }
+
+// function readNews(event, fileName) {
+//   event.preventDefault();
+//   let csrftoken = getCookie("csrftoken");
+//   let data = {
+//     filename: fileName,
+//   };
+//   const options = {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "X-CSRFToken": csrftoken,
+//     },
+//     mode: "same-origin",
+//     body: JSON.stringify(data),
+//   };
+//   fetch("/generate_tts/", options)
+//     .then((res) => res.json())
+//     .then((res) => {
+//       if (res["success"]) {
+//         let containerEle = document.querySelector(".container");
+//         let audioEle = document.createElement("audio");
+//         audioEle.setAttribute("controls", true);
+//         audioEle.setAttribute("autoplay", true);
+//         let sourceEle = document.createElement("source");
+//         sourceEle.setAttribute(
+//           "src",
+//           "/static/Audio News/" + fileName.slice(0, -4) + ".mp3"
+//         );
+//         sourceEle.setAttribute("type", "audio/mpeg");
+//         audioEle.append(sourceEle);
+//         containerEle.append(audioEle);
+//       }
+//     })
+//     .catch(console.log);
+// }
+
+@csrf_exempt
+def next_top_articles(request):
+    body = json.loads(request.body)
+    next_index = int(body["nextIndex"])
+    category_name = body["categoryName"]
+    if(category_name == "all"):
+        articles = Article.objects.all()[next_index:next_index+5]
+    else:
+        category = Category.objects.get(name=category_name)
+        articles = category.articles.all()[next_index:next_index+5]
+    result = []
+    for article in articles[:4]:
+        result.append({
+            "name":article.name,
+            "contentPath":article.content_path
+        })
+    if(articles.count() == 5):
+        next_index += 4
+    else:
+        next_index = False
+    return JsonResponse({"nextIndex":next_index,"data":result})
+
+@csrf_exempt
+def next_top_categories(request):
+    body = json.loads(request.body)
+    next_index = int(body["nextIndex"])
+    categories = Category.objects.all()[next_index:next_index+5]
+    result = []
+    for category in categories[:4]:
+        result.append({"name":category.name})
+    if(categories.count() == 5):
+        next_index += 4
+    else:
+        next_index = False
+    return JsonResponse({"nextIndex":next_index,"data":result})
+
+@csrf_exempt
+def generate_tts(request):
+    body = json.loads(request.body)
+    filename_woe = os.path.splitext(body["filename"])[0]
+    dir_name = os.path.dirname(os.path.abspath(__file__))
+    output_path = dir_name+"/static/Audio News/"+filename_woe+".mp3"
+    if(os.path.exists(output_path)):
+        print("entered")
+        return JsonResponse({"success":True})
+    else:
+        file = open(dir_name+"/static/Articles/"+body["filename"])
+        text_data = ""
+        for line in file:
+            stripped_line = line.rstrip()
+            text_data += stripped_line + " "
+        speech_data = gTTS(text_data, lang='en', tld='co.in')
+        speech_data.save(output_path)
+        return JsonResponse({"success":True})
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function nextTopCategories(event){
+    event.preventDefault();
+    let csrftoken = getCookie('csrftoken');
+    let data = {
+        "nextIndex":$("#ntc").attr("value")
+    }
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRFToken": csrftoken
+        },
+        mode: 'same-origin',
+        body: JSON.stringify(data)
+    }
+    fetch("/next_top_categories/",options)
+    .then(res => res.json())
+    .then(res => {
+        let categoryListEle = document.getElementById("category-list")
+        categoryListEle.innerHTML = ""
+        let index = 0
+        for(let category of res["data"]){
+            index += 1
+            let button = document.createElement("button")
+            button.setAttribute("id","item"+index)
+            button.setAttribute("onclick","window.location='/articles/"+category["name"]+"'")
+            button.innerHTML = category["name"]
+            categoryListEle.append(button)
+        }
+        if(res["nextIndex"]){
+            $("#ntc").attr("value",res["nextIndex"])
+        }
+        else{
+            $("#ntc").remove()
+        }
+    })
+    .catch(console.log)
+}
+
+function goBack(event){
+    event.preventDefault();
+    history.back();
+}
+

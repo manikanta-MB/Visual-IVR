@@ -1,34 +1,55 @@
 <!DOCTYPE html>
-{% load pwa %}
-{% load static %}
+{% load pwa %} {% load static %}
 <html lang="en">
-<head>
+  <head>
     {% progressive_web_app_meta %}
     <title>Article List</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% get_static_prefix %}styles/index.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% get_static_prefix %}styles/index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="{% get_static_prefix %}javascript/articles_list.js" defer></script>
-</head>
-<body>
+    <script
+      src="{% get_static_prefix %}javascript/articles_list.js"
+      defer
+    ></script>
+  </head>
+  <body>
     <div class="container">
-        <div class="panel-group">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Article List</div>
-            <div class="panel-body">
-                <div id="article-list">
-                    {% for article in articles %}
-                    <button id="item{{forloop.counter}}" onclick="readNews(event,'{{article.content_path}}')" >{{article.name}}</button>
-                    {% endfor %}
-                </div>
-                {% if next_article_exist %}<button id="nta" value="4" onclick="nextTopArticles(event,'{{category_name}}')" >Next Top Articles</button>{% endif %}
-                <button id="prev-menu" onclick="goBack(event)" >Previous Menu</button>
+      <div class="panel-group">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Article List</div>
+          <div class="panel-body">
+            <div id="article-list">
+              <button class="sr-only" id="options-heading">
+                {% if category_name == 'all' %} Article List {% else %}
+                {{category_name}} Category Article List {% endif %}
+              </button>
+              {% for article in articles %}
+              <button
+                id="item{{forloop.counter}}"
+                onclick="readNews(event,'{{article.content_path}}')"
+              >
+                {{article.name}}
+              </button>
+              {% endfor %}
             </div>
+            {% if next_article_exist %}<button
+              id="item8"
+              onclick="window.location='/articles/{{category_name}}/{{next_index}}/'"
+            >
+              Next Top Articles</button
+            >{% endif %}
+            <button id="item9" onclick="window.location='/home/'">
+              Main Menu
+            </button>
           </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
