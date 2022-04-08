@@ -23,7 +23,7 @@ urlpatterns = [
     path('home/',views.home_page),
     re_path('^articles/(?P<category_name>[a-zA-Z0-9_\- ]+)/(?P<starting_index>\d+)/$',views.list_articles),
     re_path('^categories/(?P<starting_index>\d+)/$',views.list_categories),
-    re_path('^read_article/(?P<article_name>[\S ]+)/$',views.read_article),
+    re_path('^read_article/(?P<article_id>[\S ]+)/$',views.read_article),
     path('manifest/',views.manifest_view),
     path('',include('pwa.urls')),
 ]

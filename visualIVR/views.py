@@ -13,8 +13,8 @@ no_of_categories_to_show = 4
 # Create your views here.
 
 def home_page(request):
-    default_article = "3,700 girls undergoing self-defence training"
-    return render(request,'index.html',{"default_article":default_article})
+    top_article_id = 1
+    return render(request,'index.html',{"top_article_id":top_article_id})
 
 def list_articles(request,category_name,starting_index):
     starting_index = int(starting_index)
@@ -67,11 +67,12 @@ def list_categories(request,starting_index):
         "mainMenu_tabIndex":mainMenu_tabIndex
     })
 
-def read_article(request,article_name):
-    article_path = os.path.join(os.getcwd(),'visualIVR','static','Articles',article_name+'.txt')
+def read_article(request,article_id):
+    article = Article.objects.get(id=article_id)
+    article_path = os.path.join(os.getcwd(),'visualIVR','static','Articles',article.content_path)
     file_obj = open(article_path,encoding="utf8")
     article_content = file_obj.read()
-    return render(request,'article.html',{"article_content":article_content,"article_name":article_name})
+    return render(request,'article.html',{"article_content":article_content,"article_name":article.name})
 
 def manifest_view(request):
     return render(request,'manifest.webapp',content_type='application/x-web-app-manifest+json')

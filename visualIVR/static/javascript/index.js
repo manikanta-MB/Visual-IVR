@@ -49,6 +49,15 @@ function handleKeyDownEvent(event) {
     case "ArrowDown":
       nav("down");
       break;
+    case "Enter":
+      document.activeElement.click();
+      break;
+    case "Backspace":
+      window.history.back();
+      if (window.location.pathname != "/home/") {
+        event.preventDefault();
+      }
+      break;
     default:
       break;
   }
@@ -58,3 +67,5 @@ function handleKeyDownEvent(event) {
 window.addEventListener("keydown", handleKeyDownEvent);
 
 document.querySelector(".panel-heading").focus();
+
+console.log(window.location.pathname);

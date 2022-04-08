@@ -19,10 +19,10 @@
     ></script>
   </head>
   <body>
-      <div tabindex="0" class="sr-only" id="article-description">To read the {{article_name}} Article, press 1. To stop press 2. To go back press back button.</div>
+      <div tabindex="0" class="sr-only" style="display: none;" id="article-description">To read the {{article_name}} Article, press 1. To stop press 2. To go back press back button.</div>
+      <h3 tabindex="0" style="display: none;" id="article-heading">{{article_name}} Article</h3>
       <p tabindex="1" id="article-content">{{article_content}}</p>
       <div tabindex="2" class="sr-only" id="empty-content">Reading Stopped.</div>
-      <a href="#">something to test</a>
     </div>
   </body>
 </html>
