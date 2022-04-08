@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load pwa %} {% load static %}
+  <head>
+    {% progressive_web_app_meta %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="{% get_static_prefix %}javascript/reading_article.js"
+      defer
+    ></script>
+  </head>
+  <body>
+      <div tabindex="0" class="sr-only" id="article-description">To read the {{article_name}} Article, press 1. To stop press 2. To go back press back button.</div>
+      <p tabindex="1" id="article-content">{{article_content}}</p>
+      <div tabindex="2" class="sr-only" id="empty-content">Reading Stopped.</div>
+      <a href="#">something to test</a>
+    </div>
+  </body>
+</html>

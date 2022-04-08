@@ -1,3 +1,24 @@
+function nav(direction) {
+  const currentIndex = Number(document.activeElement.tabIndex);
+  const numberOfButtons = document.querySelectorAll("button").length;
+  console.log("no of buttons" + numberOfButtons);
+  if (direction == "down") {
+    const ele = document.querySelector(`[tabindex='${currentIndex + 1}']`);
+    if (ele) {
+      ele.focus();
+    } else {
+      document.querySelector("[tabindex='0']").focus();
+    }
+  } else if (direction == "up") {
+    const ele = document.querySelector(`[tabindex='${currentIndex - 1}']`);
+    if (ele) {
+      ele.focus();
+    } else {
+      document.querySelector(`[tabindex='${numberOfButtons}']`).focus();
+    }
+  }
+}
+
 function doCorrespondingActivity(pressedKey) {
   const ele = document.getElementById(`item${pressedKey}`);
   if (ele) {
@@ -22,6 +43,12 @@ function handleKeyDownEvent(event) {
     case "9":
       doCorrespondingActivity(event.key);
       break;
+    case "ArrowUp":
+      nav("up");
+      break;
+    case "ArrowDown":
+      nav("down");
+      break;
     default:
       break;
   }
@@ -30,6 +57,4 @@ function handleKeyDownEvent(event) {
 
 window.addEventListener("keydown", handleKeyDownEvent);
 
-window.addEventListener("load", (e) => {
-  document.getElementById("options-heading").focus();
-});
+document.querySelector(".panel-heading").focus();

@@ -13,21 +13,19 @@
     <link rel="stylesheet" href="{% get_static_prefix %}styles/index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="{% get_static_prefix %}javascript/categories_list.js"></script>
+    <script src="{% get_static_prefix %}javascript/index.js" defer></script>
   </head>
   <body>
     <div class="container">
       <div class="panel-group">
         <div class="panel panel-primary">
-          <div class="panel-heading">Category List</div>
+          <div tabindex="0" class="panel-heading">Category List</div>
           <div class="panel-body">
             <div id="category-list">
-              <button class="sr-only" id="options-heading">
-                Category List
-              </button>
               {% for category in categories %}
               <button
                 id="item{{forloop.counter}}"
+                tabindex="{{forloop.counter}}"
                 onclick="window.location='/articles/{{category.name}}/0/'"
               >
                 {{category.name}}
@@ -36,11 +34,12 @@
             </div>
             {% if next_category_exist %}<button
               id="item8"
+              tabindex="{{next_top_category_tabIndex}}"
               onclick="window.location='/categories/{{next_index}}/'"
             >
               Next Top Categories</button
             >{% endif %}
-            <button id="item9" onclick="window.location='/home/'">
+            <button id="item9" tabindex="{{mainMenu_tabIndex}}" onclick="window.location='/home/'">
               Main Menu
             </button>
           </div>

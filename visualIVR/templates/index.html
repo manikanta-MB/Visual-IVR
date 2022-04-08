@@ -18,11 +18,13 @@
   <body>
     <div class="container">
       <div class="panel panel-primary">
-        <div class="panel-heading">Main Menu</div>
+        <div tabindex="0" class="panel-heading">Main Menu</div>
         <div class="panel-body">
-          <!-- <button id="item1" onclick="readNews(event,'{{default_article_path}}')">Read a New Article</button> -->
-          <button class="sr-only" id="options-heading">Main Menu</button>
-          <button id="item1" tabindex="1" onclick="readNews(this,event)">
+          <button
+            id="item1"
+            tabindex="1"
+            onclick="window.location='/read_article/{{default_article}}/'"
+          >
             Read a New Article
           </button>
           <button
