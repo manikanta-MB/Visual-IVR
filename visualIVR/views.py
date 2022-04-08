@@ -1,7 +1,10 @@
 import json
 import os
 from unicodedata import category
+import django
 # from django.http import JsonResponse
+from django.db import transaction
+from django.views.decorators.cache import cache_control
 from django.shortcuts import render
 from visualIVR.models import Article, Category
 # from django.views.decorators.csrf import csrf_exempt
@@ -13,17 +16,18 @@ no_of_categories_to_show = 4
 # Create your views here.
 
 def home_page(request):
-    top_article_id = 1
+    top_article_id = Article.objects.order_by('-read_count')[0].id
     return render(request,'index.html',{"top_article_id":top_article_id})
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def list_articles(request,category_name,starting_index):
     starting_index = int(starting_index)
     next_index = starting_index + no_of_articles_to_show
     if(category_name == "all"):
-        articles = Article.objects.all()[starting_index : starting_index + 5]
+        articles = Article.objects.order_by('-read_count')[starting_index : starting_index + 5]
     else:
         category = Category.objects.get(name=category_name)
-        articles = category.articles.all()[starting_index : starting_index + 5]
+        articles = category.articles.order_by('-read_count')[starting_index : starting_index + 5]
     if(articles.count() == 5):
         next_article_exist=True
     else:
@@ -44,10 +48,11 @@ def list_articles(request,category_name,starting_index):
         "mainMenu_tabIndex":mainMenu_tabIndex
         })
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def list_categories(request,starting_index):
     starting_index = int(starting_index)
     next_index = starting_index + no_of_categories_to_show
-    categories = Category.objects.all()[starting_index : starting_index + 5]
+    categories = Category.objects.order_by('-read_count')[starting_index : starting_index + 5]
     if(categories.count() == 5):
         next_category_exist = True
     else:
@@ -69,6 +74,12 @@ def list_categories(request,starting_index):
 
 def read_article(request,article_id):
     article = Article.objects.get(id=article_id)
+    with transaction.atomic():
+        article.read_count += 1
+        article.save()
+        for category in article.category.all():
+            category.read_count += 1
+            category.save()
     article_path = os.path.join(os.getcwd(),'visualIVR','static','Articles',article.content_path)
     file_obj = open(article_path,encoding="utf8")
     article_content = file_obj.read()

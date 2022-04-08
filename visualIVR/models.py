@@ -5,8 +5,10 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=30,primary_key=True)
+    read_count = models.IntegerField(default=0)
 
 class Article(models.Model):
     name = models.CharField(max_length=100)
     content_path = models.CharField(max_length=100)
     category = models.ManyToManyField(Category,related_name="articles")
+    read_count = models.IntegerField(default=0)
