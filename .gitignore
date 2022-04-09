@@ -2,3 +2,4 @@ __pycache__
 Audio News
 .env
 temp.txt
+requirements_global.txt
