@@ -80,8 +80,8 @@ def read_article(request,article_id):
         for category in article.categories.all():
             category.read_count += 1
             category.save()
-    article_path = os.path.join(os.getcwd(),'visualIVR','static','News',article.content_path)
-    file_obj = open(article_path,"r")
+    article_path = os.path.join(os.getcwd(),'visualIVR','static','Articles',article.content_path)
+    file_obj = open(article_path,"r",encoding="utf8")
     article_content = file_obj.read()
     return render(request,'article.html',{"article_content":article_content,"article_name":article.name})
 
