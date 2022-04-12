@@ -8,7 +8,7 @@ class Category(models.Model):
     read_count = models.IntegerField(default=0)
 
 class Article(models.Model):
-    name = models.CharField(max_length=100)
-    content_path = models.CharField(max_length=100)
-    category = models.ManyToManyField(Category,related_name="articles")
+    name = models.CharField(max_length=100,unique=True)
+    content_path = models.CharField(max_length=200)
+    categories = models.ManyToManyField(Category,related_name="articles")
     read_count = models.IntegerField(default=0)
